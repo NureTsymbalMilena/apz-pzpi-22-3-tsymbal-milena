@@ -1,0 +1,629 @@
+Харківський національний університет радіоелектроніки
+Факультет комп'ютерних наук
+Катедра програмної інженерії
+
+
+
+
+ЗВІТ
+до лабораторної роботи №2
+з дисципліни «Архітектура програмного забезпечення»
+на тему: «РОЗРОБКА БАЗИ ДАНИХ ДЛЯ 
+СЕРВЕРНОЇ ЧАСТИНИ ПРОГРАМНОЇ СИСТЕМИ ТА ПРИКЛАДНОГО ПРОГРАМНОГО ІНТЕРФЕЙСУ»
+
+
+
+
+Виконала
+ст. гр. ПЗПІ-22-3
+Цимбал Мілена Русланівна
+Перевірив
+ст. викладач катедри ПІ
+Сокорчук Ігор Петрович
+
+
+
+
+
+
+Харків 2025
+ІСТОРІЯ ЗМІН
+
+№	Дата	Версія звіту	Опис змін та виправлень
+1	26.04.2025	0.1	Створено розділ «Історія змін», створено титульний лист. Додано базову структуру серверної частини для доробки
+2	27.04.2025	0.1	Створено розділ «Опис виконаної роботи»
+3	27.04.2025	0.1	Створено додаток Б, В.
+4	27.04.2025	0.1	Створено відеозапис та наведено в додатку А.
+5	28.04.2025	0.1	Створено розділ «Висновки».
+
+1 МЕТА
+
+Розробити базу даних для серверної частини та прикладного програмного інтерфейсу для програмної системи моніторингу знаходження людей у приміщеннях та фіксації контактів.
+
+2 ХІД РОБОТИ
+
+До виконаної роботи було створено відеозвіт, посилання на який наведено у додатку А.
+	При розробці серверної частини програмної системи для моніторингу перебування людей у приміщеннях та фіксації їх контактів було прийнято низку рішень, спрямованих на забезпечення масштабованості, надійності та продуктивності системи. Основою архітектури обрано трирівневу архітектуру з окремим шаром моделей, яка забезпечує чітке розмежування відповідальностей між компонентами, спрощує розвиток і підтримку проєкту, а також дозволяє масштабувати систему залежно від навантаження.
+Для опису взаємодії користувачів із системою були створені діаграми прецедентів, які детально демонструють основні сценарії використання системи. Крім того, розроблено ER-діаграму, яка описує ключові сутності та їх зв’язки, що забезпечує ефективну структуру бази даних. Також було створено детальну схему структури бази даних, яка описує таблиці, ключі, зв’язки та обмеження між ними. Ці діаграми та схеми наведено в додатку Б.
+Для захисту доступу до системи реалізовано механізм авторизації на основі JWT-токенів. Цей підхід забезпечує безпечне зберігання інформації про автентифікацію та дозволяє ефективно керувати доступом до ресурсів системи.
+Серверна частина розроблена мовою програмування C# із використанням ASP.NET Web API, що дозволяє створювати RESTful API для взаємодії клієнтської частини з сервером. Для роботи з базою даних використовувалася ORM Entity Framework, яка спрощує виконання операцій із даними, автоматично перетворюючи об'єкти в таблиці бази даних. 
+Основною системою керування базами даних обрано Microsoft SQL Server, яка є потужним і надійним інструментом для зберігання великих обсягів даних, забезпечує високу продуктивність і підтримує складні SQL-запити.
+Демонстрація функціоналу системи доступна за посиланням, наведеним у додатку В.
+
+
+
+
+
+
+
+ВИСНОВКИ
+
+У ході лабораторного заняття було реалізовано ключові функції бізнес-логіки та адміністративного керування системою.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ДОДАТОК А
+Посилання на відео-звіт
+
+Відеозапис презентації результатів лабораторної роботи: https://youtu.be/hJwdo8QOT-Y
+Хронологічний опис відеозапису:
+00:00 Привітання. Доповідач вітається, розповідає про загальну мету лабораторної роботи та коротко окреслює, які функції були реалізовані.
+00:21 Функції бізнес логіки. Створення контакту між користувачами. 
+Пояснюється реалізація алгоритму, що визначає тривалість контакту.
+02:22 Функції бізнес логіки. Аналіз епідеміологічних ризиків. Розглянуто функцію, яка прогнозує епідеміологічних ризики на основі контактів користувача.
+06:15 Функції адміністрування бази даних. Показано функціонал створення резевних копій бази даних та відновлення бази даних.
+08:22 Функції адміністрування системи. Демонструються можливості зміни ролі користувача.
+09:41 Функції адміністрування користувачів. Пояснюється реалізація функціоналу для підключення користувача до девайсу.
+11:50 Функції адміністрування користувачів. Пояснюється реалізація логування у системі.
+14:20 Висновки. Підбивається підсумок виконаної роботи.
+
+
+
+
+
+
+
+
+ДОДАТОК Б
+Графічні матеріали
+
+ 
+Рисунок Б.1 – ER діаграма
+
+ 
+Рисунок Б.2 – Діаграма структури бази даних
+
+ 
+Рисунок Б.3 – UML-діаграма прецедентів реєстрації та авторизації
+
+ 
+Рисунок Б.4 – UML-діаграма прецедентів дій над контактами, переміщеннями та повідомленнями
+
+ 
+Рисунок Б.5 – UML-діаграма прецедентів дій над лікарнями, зонами, кімнатами, девайсами
+
+
+
+
+
+
+
+
+
+ДОДАТОК В 
+Програмний код
+
+	В.1 Математична обробка прикладних даних. Реєстрація контактів між користувачами та аналіз контактів для виявлення епідеміологічних ризиків.
+	GitHub репозиторій: https://github.com/NureTsymbalMilena/apz-pzpi-22-3-tsymbal-milena/blob/main/Lab2/pzpi-22-3-tsymbal-milena-lab2/InRoom.BLL/Services/ContactService.cs
+
+   1: using InRoom.BLL.Contracts.User;
+   2: using InRoom.BLL.Helpers;
+   3: using InRoom.BLL.Interfaces;
+   4: using InRoom.DAL.Interfaces;
+   5: using InRoom.DLL.Models;
+   6:
+   7: namespace InRoom.BLL.Services;
+   8:
+   9: public class ContactService : GenericService<Contact>, IContactService
+  10: {
+  11:     private readonly IUnitOfWork _unitOfWork;
+  12:     private readonly IUserRepository _userRepository;
+  13:     private readonly IDeviceRepository _deviceRepository;
+  14:     private readonly IContactRepository _contactRepository;
+  15:     private readonly IDiseaseRepository _diseaseRepository;
+  16:
+  17:     // Constructor to inject required dependencies for the ContactService
+  18:     public ContactService(
+  19:         IUnitOfWork unitOfWork,
+  20:         IUserRepository userRepository,
+  21:         IDeviceRepository deviceRepository,
+  22:         IContactRepository contactRepository,
+  23:         IDiseaseRepository diseaseRepository) : base(unitOfWork)
+  24:     {
+  25:         _unitOfWork = unitOfWork;
+  26:         _userRepository = userRepository;
+  27:         _deviceRepository = deviceRepository;
+  28:         _contactRepository = contactRepository;
+  29:         _diseaseRepository = diseaseRepository;
+  30:     }
+  31:
+  32:     // Method to create a new contact between two users with a specific distance and device
+  33:     public async Task<Contact> Add(Guid initiatorId, Guid receiverId, Guid deviceId,
+  34:         float initiatorX, float initiatorY, float initiatorZ,
+  35:         float receiverX, float receiverY, float receiverZ)
+  36:     {
+  37:         const float MaxAllowedDistance = 5.0f;
+  38:         const int ContactTimeoutMinutes = 2;
+  39:
+  40:         var initiator = await _userRepository.GetById(initiatorId);
+  41:         if (initiator == null)
+  42:         {
+  43:             throw new ApiException($"User initiator with ID {initiatorId} not found.", 404);
+  44:         }
+  45:
+  46:         var receiver = await _userRepository.GetById(receiverId);
+  47:         if (receiver == null)
+  48:         {
+  49:             throw new ApiException($"User receiver with ID {receiverId} not found.", 404);
+  50:         }
+  51:
+  52:         var distance = CalculateDistance(initiatorX, initiatorY, initiatorZ, receiverX, receiverY, receiverZ);
+  53:
+  54:         if (distance > MaxAllowedDistance)
+  55:         {
+  56:             throw new ApiException($"Contact cannot be created. Distance ({distance}m) exceeds the maximum allowed value of {MaxAllowedDistance}m.", 400);
+  57:         }
+  58:
+  59:         var device = await _deviceRepository.GetById(deviceId);
+  60:         if (device == null)
+  61:         {
+  62:             throw new ApiException($"Device with ID {deviceId} not found.", 404);
+  63:         }
+  64:
+  65:         var now = DateTime.Now;
+  66:
+  67:         var existingContact = (await Repository.GetAll())
+  68:             .Where(c =>
+  69:                 ((c.ContactInitiatorId == initiatorId && c.ContactReceiverId == receiverId) ||
+  70:                  (c.ContactInitiatorId == receiverId && c.ContactReceiverId == initiatorId)) &&
+  71:                 (
+  72:                     c.ContactEndTime == null ||
+  73:                     (c.ContactEndTime.HasValue && (now - c.ContactEndTime.Value).TotalMinutes <= ContactTimeoutMinutes)
+  74:                 )
+  75:             )
+  76:             .OrderByDescending(c => c.ContactStartTime)
+  77:             .FirstOrDefault();
+  78:
+  79:         if (existingContact != null)
+  80:         {
+  81:             existingContact.MinDistance = Math.Min(existingContact.MinDistance, distance);
+  82:             existingContact.ContactEndTime = now;
+  83:
+  84:             await Repository.Update(existingContact);
+  85:             await _unitOfWork.SaveChangesAsync();
+  86:
+  87:             return existingContact;
+  88:         }
+  89:
+  90:         var newContact = new Contact()
+  91:         {
+  92:             ContactId = Guid.NewGuid(),
+  93:             ContactInitiatorId = initiatorId,
+  94:             ContactInitiator = initiator,
+  95:             ContactReceiverId = receiverId,
+  96:             ContactReceiver = receiver,
+  97:             DeviceId = deviceId,
+  98:             Device = device,
+  99:             MinDistance = distance
+ 100:         };
+ 101:
+ 102:         await Repository.Add(newContact);
+ 103:         await _unitOfWork.SaveChangesAsync();
+ 104:
+ 105:         return newContact;
+ 106:     }
+ 107:
+ 108:     // Method to calculate the distance between users
+ 109:     private double CalculateDistance(float userX, float userY, float userZ, float deviceX, float deviceY, float deviceZ)
+ 110:     {
+ 111:         return Math.Sqrt(Math.Pow(deviceX - userX, 2) + Math.Pow(deviceY - userY, 2) + Math.Pow(deviceZ - userZ, 2));
+ 112:     }
+ 113:
+ 114:     // Method to update an existing contact with a new distance value
+ 115:     public async Task<Contact> Update(Guid contactId, float distance)
+ 116:     {
+ 117:         var contact = await Repository.GetById(contactId);
+ 118:         if (contact == null)
+ 119:         {
+ 120:             throw new ApiException($"Contact with ID {contactId} not found.", 404);
+ 121:         }
+ 122:
+ 123:         if (distance < 0)
+ 124:         {
+ 125:             throw new ApiException("Distance cannot be negative.", 400);
+ 126:         }
+ 127:
+ 128:         contact.ContactEndTime = DateTime.Now;
+ 129:         contact.MinDistance = distance < contact.MinDistance ? distance : contact.MinDistance;
+ 130:
+ 131:         await Repository.Update(contact);
+ 132:         await _unitOfWork.SaveChangesAsync();
+ 133:
+ 134:         return contact;
+ 135:     }
+ 136:
+ 137:     // Method to get movements report
+ 138:     public async Task<ContacsReportResponse> GetContactsReport(Guid userId, DateTime startDate, DateTime endDate)
+ 139:     {
+ 140:         var user = await _userRepository.GetById(userId);
+ 141:         if (user == null)
+ 142:         {
+ 143:             throw new ApiException($"User with ID {userId} not found.", 404);
+ 144:         }
+ 145:
+ 146:         var contacts = await _contactRepository.GetContactsByDateRangeAndUserId(userId, startDate, endDate);
+ 147:
+ 148:         var contactsReportResponse = new ContacsReportResponse()
+ 149:         {
+ 150:             User = user,
+ 151:             StartDate = startDate,
+ 152:             EndDate = endDate,
+ 153:             Contacts = contacts
+ 154:         };
+ 155:
+ 156:         return contactsReportResponse;
+ 157:     }
+ 158:
+ 159:     // Method to get epidemiological risk analysis
+ 160:    public async Task<EpidemiologicalRiskAnalysisResponse> AnalyzeEpidemiologicalRisk(Guid userId)
+ 161:     {
+ 162:         var user = await _userRepository.GetById(userId);
+ 163:         if (user == null)
+ 164:         {
+ 165:             throw new ApiException($"User with ID {userId} not found.", 404);
+ 166:         }
+ 167:
+ 168:         var contacts = await _contactRepository.GetByUserIdAndDaysNumber(userId, 14);
+ 169:         double totalRisk = 0;
+ 170:         int highRiskContacts = 0;
+ 171:         int totalContacts = contacts.Count;
+ 172:         double totalContactDuration = 0;
+ 173:         var potentialDiseases = new HashSet<Disease>();
+ 174:
+ 175:         var userDisease = user.Disease;
+ 176:         bool isContagious = userDisease != null && userDisease.Contagious;
+ 177:
+ 178:         if (contacts.Any())
+ 179:         {
+ 180:             foreach (var contact in contacts)
+ 181:             {
+ 182:                 double contactDuration = contact.ContactEndTime.HasValue
+ 183:                     ? (contact.ContactEndTime.Value - contact.ContactStartTime).TotalMinutes
+ 184:                     : 0;
+ 185:
+ 186:                 totalContactDuration += contactDuration;
+ 187:
+ 188:                 var contactInitiator = await _userRepository.GetById(contact.ContactInitiatorId);
+ 189:                 if (contactInitiator.DiseaseId.HasValue)
+ 190:                 {
+ 191:                     contactInitiator.Disease = await _diseaseRepository.GetById(contactInitiator.DiseaseId.Value);
+ 192:                 }
+ 193:
+ 194:                 var contactReceiver = await _userRepository.GetById(contact.ContactReceiverId);
+ 195:                 if (contactReceiver.DiseaseId.HasValue)
+ 196:                 {
+ 197:                     contactReceiver.Disease = await _diseaseRepository.GetById(contactReceiver.DiseaseId.Value);
+ 198:                 }
+ 199:
+ 200:                 bool initiatorHasDisease = contactInitiator.Disease != null && contactInitiator.Disease.Contagious;
+ 201:                 bool receiverHasDisease = contactReceiver.Disease != null && contactReceiver.Disease.Contagious;
+ 202:
+ 203:                 double risk = 0;
+ 204:
+ 205:                 if (contactDuration > 15)
+ 206:                 {
+ 207:                     risk += 0.3;
+ 208:                 }
+ 209:
+ 210:                 if (contact.ContactInitiatorId == userId && receiverHasDisease)
+ 211:                 {
+ 212:                     risk += 0.5;
+ 213:
+ 214:                     if (contact.MinDistance < 2)
+ 215:                     {
+ 216:                         risk += 0.2;
+ 217:                     }
+ 218:
+ 219:                     totalRisk += risk;
+ 220:
+ 221:                     if (contactReceiver.Disease != null)
+ 222:                     {
+ 223:                         potentialDiseases.Add(contactReceiver.Disease);
+ 224:                     }
+ 225:                 }
+ 226:                 else if (contact.ContactReceiverId == userId && initiatorHasDisease)
+ 227:                 {
+ 228:                     risk += 0.5;
+ 229:
+ 230:                     if (contact.MinDistance < 2)
+ 231:                     {
+ 232:                         risk += 0.2;
+ 233:                     }
+ 234:
+ 235:                     totalRisk += risk;
+ 236:
+ 237:                     if (contactInitiator.Disease != null)
+ 238:                     {
+ 239:                         potentialDiseases.Add(contactInitiator.Disease);
+ 240:                     }
+ 241:                 }
+ 242:
+ 243:                 if (initiatorHasDisease || receiverHasDisease)
+ 244:                 {
+ 245:                     highRiskContacts++;
+ 246:                 }
+ 247:             }
+ 248:
+ 249:             double averageRisk = totalRisk / totalContacts;
+ 250:             TimeSpan averageContactDuration = TimeSpan.FromMinutes(totalContactDuration / totalContacts);
+ 251:
+ 252:             string riskLevel = "Low";
+ 253:             if (averageRisk > 0.6)
+ 254:             {
+ 255:                 riskLevel = "High";
+ 256:             }
+ 257:             else if (averageRisk > 0.3)
+ 258:             {
+ 259:                 riskLevel = "Moderate";
+ 260:             }
+ 261:
+ 262:             return new EpidemiologicalRiskAnalysisResponse
+ 263:             {
+ 264:                 User = user,
+ 265:                 Contacts = contacts,
+ 266:                 TotalRisk = totalRisk,
+ 267:                 UserDisease = userDisease,
+ 268:                 IsContagious = isContagious,
+ 269:                 TotalContagionRate = totalRisk,
+ 270:                 AverageContactDuration = averageContactDuration,
+ 271:                 RiskLevel = riskLevel,
+ 272:                 PotentialDiseases = potentialDiseases.ToList()
+ 273:             };
+ 274:         }
+ 275:
+ 276:         return new EpidemiologicalRiskAnalysisResponse
+ 277:         {
+ 278:             User = user,
+ 279:             Contacts = new List<Contact>(),
+ 280:             TotalRisk = 0,
+ 281:             UserDisease = userDisease,
+ 282:             IsContagious = isContagious,
+ 283:             TotalContagionRate = 0,
+ 284:             AverageContactDuration = TimeSpan.Zero,
+ 285:             RiskLevel = "Low",
+ 286:             PotentialDiseases = new List<Disease>()
+ 287:         };
+ 288:     }
+ 289: }
+
+В.2 Адміністрування бізнес-логіки системи. Функції створення резервної копії бази даних, відновлення бази даних. Зміна ролей користувачів. Підключення користувачів до девайсів.
+GitHub репозиторій: https://github.com/NureTsymbalMilena/apz-pzpi-22-3-tsymbal-milena/blob/main/Lab2/pzpi-22-3-tsymbal-milena-lab2/InRoom.BLL/Services/AdminService.cs
+
+1: using InRoom.BLL.Helpers;
+   2: using InRoom.BLL.Interfaces;
+   3: using InRoom.DAL.Interfaces;
+   4: using InRoom.DLL.Enums;
+   5: using Microsoft.Data.SqlClient;
+   6: using User = InRoom.DLL.Models.User;
+   7:
+   8: namespace InRoom.BLL.Services;
+   9:
+  10: public class AdminService: GenericService<User>, IAdminService
+  11: {
+  12:     private readonly string _connectionString;
+  13:     private readonly IUnitOfWork _unitOfWork;
+  14:     private readonly IUserRepository _userRepository;
+  15:     private readonly IDeviceRepository _deviceRepository;
+  16:
+  17:     public AdminService(string? connectionString, IUnitOfWork unitOfWork, IUserRepository userRepository, IDeviceRepository deviceRepository) : base(unitOfWork)
+  18:     {
+  19:         _connectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
+  20:         _unitOfWork = unitOfWork;
+  21:         _userRepository = userRepository;
+  22:         _deviceRepository = deviceRepository;
+  23:     }
+  24:
+  25:     public async Task<string> BackupData(string? outputDirectory)
+  26:     {
+  27:         try
+  28:         {
+  29:             outputDirectory ??= @"C:\Backups";
+  30:             if (!Directory.Exists(outputDirectory))
+  31:             {
+  32:                 Directory.CreateDirectory(outputDirectory);
+  33:             }
+  34:
+  35:             string backupFileName = $"backup_{DateTime.Now:yyyyMMddHHmmss}.bak";
+  36:             string backupFilePath = Path.Combine(outputDirectory, backupFileName);
+  37:
+  38:             using (SqlConnection con = new SqlConnection(_connectionString))
+  39:             {
+  40:                 await con.OpenAsync();
+  41:                 SqlCommand com = new SqlCommand($"BACKUP DATABASE InRoom TO DISK = @BackupFilePath", con);
+  42:                 com.Parameters.AddWithValue("@BackupFilePath", backupFilePath);
+  43:
+  44:                 await com.ExecuteNonQueryAsync();
+  45:                 con.Close();
+  46:             }
+  47:
+  48:             return backupFilePath;
+  49:         }
+  50:         catch (Exception ex)
+  51:         {
+  52:             throw new ApiException($"An error occurred while creating the backup: {ex.Message}", 500);
+  53:         }
+  54:     }
+  55:
+  56:     public async Task RestoreData(string backupFilePath)
+  57:     {
+  58:         try
+  59:         {
+  60:             if (string.IsNullOrEmpty(backupFilePath))
+  61:             {
+  62:                 throw new ArgumentException("Backup file path is required.");
+  63:             }
+  64:
+  65:             string restoreQuery = $@"
+  66:             USE master;
+  67:
+  68:             -- Закрываем все соединения с базой данных InRoom
+  69:             ALTER DATABASE InRoom SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+  70:
+  71:             -- Выполняем восстановление базы данных
+  72:             RESTORE DATABASE InRoom FROM DISK = @BackupFilePath WITH REPLACE;
+  73:
+  74:             -- Возвращаем базу данных в многопользовательский режим
+  75:             ALTER DATABASE InRoom SET MULTI_USER;
+  76:         ";
+  77:
+  78:             using (SqlConnection con = new SqlConnection(_connectionString))
+  79:             {
+  80:                 await con.OpenAsync();
+  81:
+  82:                 SqlCommand com = new SqlCommand(restoreQuery, con);
+  83:                 com.Parameters.AddWithValue("@BackupFilePath", backupFilePath);
+  84:
+  85:                 await com.ExecuteNonQueryAsync();
+  86:                 con.Close();
+  87:             }
+  88:
+  89:         }
+  90:         catch (Exception ex)
+  91:         {
+  92:             throw new ApiException($"An error occurred while restoring the backup: {ex.Message}", 500);
+  93:         }
+  94:     }
+  95:
+  96:     public async Task<User> ConnectUserToDevice(string userEmail, string roomName)
+  97:     {
+  98:         var user = await _userRepository.GetByEmail(userEmail);
+  99:         if (user == null)
+ 100:         {
+ 101:             throw new ApiException($"User with email {userEmail} not found", 404);
+ 102:         }
+ 103:
+ 104:         var device = await _deviceRepository.GetByRoomName(roomName);
+ 105:         if (device == null)
+ 106:         {
+ 107:             throw new ApiException($"Device connected to room {roomName} not found", 404);
+ 108:         }
+ 109:
+ 110:         user.DeviceId = device.DeviceId;
+ 111:         user.Device = device;
+ 112:
+ 113:         await _userRepository.Update(user);
+ 114:         await _unitOfWork.SaveChangesAsync();
+ 115:
+ 116:         return user;
+ 117:     }
+ 118:
+ 119:     public async Task<User> SetRole(string userEmail, Roles role)
+ 120:     {
+ 121:         var user = await _userRepository.GetByEmail(userEmail);
+ 122:         if (user == null)
+ 123:         {
+ 124:             throw new ApiException($"User with email {userEmail} not found", 404);
+ 125:         }
+ 126:
+ 127:         if (!Enum.IsDefined(typeof(Roles), role))
+ 128:         {
+ 129:             throw new ApiException("Invalid role", 400);
+ 130:         }
+ 131:
+ 132:         user.Role = role;
+ 133:
+ 134:         await _userRepository.Update(user);
+ 135:         await _unitOfWork.SaveChangesAsync();
+ 136:
+ 137:         return user;
+ 138:     }
+ 139: }
+
+В.3 Адміністрування бізнес-логіки системи . Перегляд та видалення системних подій.
+GitHub репозиторій: https://github.com/NureTsymbalMilena/apz-pzpi-22-3-tsymbal-milena/blob/main/Lab2/pzpi-22-3-tsymbal-milena-lab2/InRoom.BLL/Services/RequestLogService.cs
+
+   1: using InRoom.BLL.Contracts.User;
+   2: using InRoom.BLL.Helpers;
+   3: using InRoom.BLL.Interfaces;
+   4: using InRoom.DAL.Interfaces;
+   5: using InRoom.DLL.Models;
+   6: using Microsoft.AspNetCore.Http;
+   7:
+   8: namespace InRoom.BLL.Services;
+   9:
+  10: public class RequestLogService: GenericService<RequestLog>, IRequestLogService
+  11: {
+  12:     private readonly IUnitOfWork _unitOfWork;
+  13:     private readonly IRequestLogRepository _requestLogRepository;
+  14:
+  15:     // Constructor to inject the required RequestLogRepository dependencies
+  16:     public RequestLogService(IUnitOfWork unitOfWork, IRequestLogRepository requestLogRepository): base(unitOfWork)
+  17:     {
+  18:         _unitOfWork = unitOfWork;
+  19:         _requestLogRepository = requestLogRepository;
+  20:     }
+  21:
+  22:     // Method to add a new log
+  23:     public async Task LogAsync(HttpRequest request, HttpResponse response)
+  24:     {
+  25:         var log = new RequestLog
+  26:         {
+  27:             Method = request.Method,
+  28:             Path = request.Path,
+  29:             StatusCode = response.StatusCode,
+  30:             Timestamp = DateTime.UtcNow
+  31:         };
+  32:
+  33:         await _requestLogRepository.Add(log);
+  34:     }
+  35:
+  36:     // Method to get movements report
+  37:     public async Task<RequestLogsReportResponse> GetRequestLogsReport(DateTime startDate, DateTime endDate)
+  38:     {
+  39:
+  40:         var requestLogs = await _requestLogRepository.GetRequestLogsByDateRange(startDate, endDate);
+  41:
+  42:         var requestLogsReportResponse = new RequestLogsReportResponse()
+  43:         {
+  44:             StartDate = startDate,
+  45:             EndDate = endDate,
+  46:             RequestLogs = requestLogs
+  47:         };
+  48:
+  49:         return requestLogsReportResponse;
+  50:     }
+  51: }
+
