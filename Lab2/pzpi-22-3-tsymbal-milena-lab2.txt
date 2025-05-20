@@ -74,6 +74,8 @@
 
 
 
+
+
 ВИСНОВКИ
 
 У ході лабораторного заняття було реалізовано ключові функції бізнес-логіки та адміністративного керування системою.
@@ -154,7 +156,7 @@
 ДОДАТОК В 
 Програмний код
 
-	В.1 Математична обробка прикладних даних. Реєстрація контактів між користувачами та аналіз контактів для виявлення епідеміологічних ризиків.
+	В.1 Математична обробка прикладних даних. 
 	GitHub репозиторій: https://github.com/NureTsymbalMilena/apz-pzpi-22-3-tsymbal-milena/blob/main/Lab2/pzpi-22-3-tsymbal-milena-lab2/InRoom.BLL/Services/ContactService.cs
 
    1: using InRoom.BLL.Contracts.User;
@@ -447,10 +449,65 @@
  288:     }
  289: }
 
-В.2 Адміністрування бізнес-логіки системи. Функції створення резервної копії бази даних, відновлення бази даних. Зміна ролей користувачів. Підключення користувачів до девайсів.
+В.2 Адміністрування бізнес-логіки системи . 
+GitHub репозиторій: https://github.com/NureTsymbalMilena/apz-pzpi-22-3-tsymbal-milena/blob/main/Lab2/pzpi-22-3-tsymbal-milena-lab2/InRoom.BLL/Services/RequestLogService.cs
+
+   1: using InRoom.BLL.Contracts.User;
+   2: using InRoom.BLL.Helpers;
+   3: using InRoom.BLL.Interfaces;
+   4: using InRoom.DAL.Interfaces;
+   5: using InRoom.DLL.Models;
+   6: using Microsoft.AspNetCore.Http;
+   7:
+   8: namespace InRoom.BLL.Services;
+   9:
+  10: public class RequestLogService: GenericService<RequestLog>, IRequestLogService
+  11: {
+  12:     private readonly IUnitOfWork _unitOfWork;
+  13:     private readonly IRequestLogRepository _requestLogRepository;
+  14:
+  15:     // Constructor to inject the required RequestLogRepository dependencies
+  16:     public RequestLogService(IUnitOfWork unitOfWork, IRequestLogRepository requestLogRepository): base(unitOfWork)
+  17:     {
+  18:         _unitOfWork = unitOfWork;
+  19:         _requestLogRepository = requestLogRepository;
+  20:     }
+  21:
+  22:     // Method to add a new log
+  23:     public async Task LogAsync(HttpRequest request, HttpResponse response)
+  24:     {
+  25:         var log = new RequestLog
+  26:         {
+  27:             Method = request.Method,
+  28:             Path = request.Path,
+  29:             StatusCode = response.StatusCode,
+  30:             Timestamp = DateTime.UtcNow
+  31:         };
+  32:
+  33:         await _requestLogRepository.Add(log);
+  34:     }
+  35:
+  36:     // Method to get movements report
+  37:     public async Task<RequestLogsReportResponse> GetRequestLogsReport(DateTime startDate, DateTime endDate)
+  38:     {
+  39:
+  40:         var requestLogs = await _requestLogRepository.GetRequestLogsByDateRange(startDate, endDate);
+  41:
+  42:         var requestLogsReportResponse = new RequestLogsReportResponse()
+  43:         {
+  44:             StartDate = startDate,
+  45:             EndDate = endDate,
+  46:             RequestLogs = requestLogs
+  47:         };
+  48:
+  49:         return requestLogsReportResponse;
+  50:     }
+  51: }
+
+В.3 Резервне копіювання користувацьких даних. 
 GitHub репозиторій: https://github.com/NureTsymbalMilena/apz-pzpi-22-3-tsymbal-milena/blob/main/Lab2/pzpi-22-3-tsymbal-milena-lab2/InRoom.BLL/Services/AdminService.cs
 
-1: using InRoom.BLL.Helpers;
+   1: using InRoom.BLL.Helpers;
    2: using InRoom.BLL.Interfaces;
    3: using InRoom.DAL.Interfaces;
    4: using InRoom.DLL.Enums;
@@ -589,59 +646,4 @@ GitHub репозиторій: https://github.com/NureTsymbalMilena/apz-pzpi-22-
  137:         return user;
  138:     }
  139: }
-
-В.3 Адміністрування бізнес-логіки системи . Перегляд та видалення системних подій.
-GitHub репозиторій: https://github.com/NureTsymbalMilena/apz-pzpi-22-3-tsymbal-milena/blob/main/Lab2/pzpi-22-3-tsymbal-milena-lab2/InRoom.BLL/Services/RequestLogService.cs
-
-   1: using InRoom.BLL.Contracts.User;
-   2: using InRoom.BLL.Helpers;
-   3: using InRoom.BLL.Interfaces;
-   4: using InRoom.DAL.Interfaces;
-   5: using InRoom.DLL.Models;
-   6: using Microsoft.AspNetCore.Http;
-   7:
-   8: namespace InRoom.BLL.Services;
-   9:
-  10: public class RequestLogService: GenericService<RequestLog>, IRequestLogService
-  11: {
-  12:     private readonly IUnitOfWork _unitOfWork;
-  13:     private readonly IRequestLogRepository _requestLogRepository;
-  14:
-  15:     // Constructor to inject the required RequestLogRepository dependencies
-  16:     public RequestLogService(IUnitOfWork unitOfWork, IRequestLogRepository requestLogRepository): base(unitOfWork)
-  17:     {
-  18:         _unitOfWork = unitOfWork;
-  19:         _requestLogRepository = requestLogRepository;
-  20:     }
-  21:
-  22:     // Method to add a new log
-  23:     public async Task LogAsync(HttpRequest request, HttpResponse response)
-  24:     {
-  25:         var log = new RequestLog
-  26:         {
-  27:             Method = request.Method,
-  28:             Path = request.Path,
-  29:             StatusCode = response.StatusCode,
-  30:             Timestamp = DateTime.UtcNow
-  31:         };
-  32:
-  33:         await _requestLogRepository.Add(log);
-  34:     }
-  35:
-  36:     // Method to get movements report
-  37:     public async Task<RequestLogsReportResponse> GetRequestLogsReport(DateTime startDate, DateTime endDate)
-  38:     {
-  39:
-  40:         var requestLogs = await _requestLogRepository.GetRequestLogsByDateRange(startDate, endDate);
-  41:
-  42:         var requestLogsReportResponse = new RequestLogsReportResponse()
-  43:         {
-  44:             StartDate = startDate,
-  45:             EndDate = endDate,
-  46:             RequestLogs = requestLogs
-  47:         };
-  48:
-  49:         return requestLogsReportResponse;
-  50:     }
-  51: }
 
