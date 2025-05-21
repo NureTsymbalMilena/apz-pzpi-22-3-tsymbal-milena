@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: grey;
+}
+  
+main {
+  max-width: 1240px;
+  padding: 0 20px;
+  box-sizing: border-box;
+  margin: 90px auto 0 auto;
+}
+
+p, input, textarea, label, option, select {
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+}

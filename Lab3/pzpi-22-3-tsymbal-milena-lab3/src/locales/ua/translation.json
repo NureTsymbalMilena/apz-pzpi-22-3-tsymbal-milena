@@ -1,0 +1,118 @@
+{
+  "profile": {
+    "title": "Профіль",
+    "name": "Ім'я",
+    "email": "Електронна пошта",
+    "registrationDate": "Дата реєстрації",
+    "role": "Роль",
+    "hospitalName": "Назва лікарні",
+    "disease": "Хвороба",
+    "isContagious": "Чи є заразним",
+    "no": "Ні",
+    "none": "Відсутня",
+    "edit": "Редагувати профіль",
+    "delete": "Видалити акаунт"
+  },
+
+  "analysis": {
+    "title": "Аналіз епідеміологічного ризику",
+    "name": "Ім'я",
+    "surname": "Прізвище",
+    "disease": "Хвороба",
+    "isContagious": "Чи є заразним",
+    "totalRisk": "Загальний ризик",
+    "riskLevel": "Рівень ризику",
+    "averageContactDuration": "Середня тривалість контакту",
+    "potentialDiseases": "Потенційні хвороби",
+    "contacts": "Контакти (кількість)",
+    "roomName": "Назва кімнати",
+    "minimalDistance": "Мінімальна відстань",
+    "contactStartTime": "Час початку контакту",
+    "contactEndTime": "Час закінчення контакту",
+    "hours": "г",
+    "minutes": "хв",
+    "seconds": "с"
+  },
+
+  "backup": {
+    "backupTitle": "Резервне копіювання",
+    "backupDirectory": "Папка для резервної копії",
+    "backupPlaceholder": "наприклад, C:\\Backups",
+    "restoreTitle": "Відновлення даних",
+    "selectBakFile": "Виберіть файл .bak",
+    "restorePlaceholder": "наприклад, C:\\Backups\\backup.bak"
+  },
+
+  "changeRole": {
+    "title": "Зміна ролі користувача",
+    "email": "Електронна пошта",
+    "role": "Роль",
+    "selectAnEmail": "-- Виберіть ел. пошту --",
+    "selectARole": "-- Виберіть роль --",
+    "button": "Змінити роль"
+  },
+
+  "login": {
+    "title": "Вхід",
+    "email": "Електронна пошта",
+    "emailPlaceholder": "Введіть електронну пошту",
+    "password": "Пароль",
+    "passwordPlaceholder": "Введіть пароль",
+    "dontHaveAnAccount": "Ще немає акаунту?",
+    "register": "Зареєструватися"
+  },
+
+  "register": {
+    "title": "Реєстрація",
+    "name": "Ім'я",
+    "namePlaceholder": "Введіть ім'я",
+    "surname": "Прізвище",
+    "surnamePlaceholder": "Введіть прізвище",
+    "email": "Електронна пошта",
+    "emailPlaceholder": "Введіть електронну пошту",
+    "password": "Пароль",
+    "passwordPlaceholder": "Введіть пароль",
+    "hospitalName": "Назва лікарні",
+    "hospitalPlaceholder": "-- Оберіть лікарню --"
+  },
+
+  "editProfile": {
+    "title": "Редагування інформації профілю",
+    "name": "Ім'я",
+    "namePlaceholder": "Введіть ім'я",
+    "surname": "Прізвище",
+    "surnamePlaceholder": "Введіть прізвище",
+    "email": "Електронна пошта",
+    "emailPlaceholder": "Введіть електронну пошту",
+    "button": "Редагувати"
+  },
+
+  "header": {
+    "changeRole": "Зміна ролі",
+    "backup": "Резервне копіювання",
+    "profile": "Профіль",
+    "logout": "Вийти",
+    "login": "Вхід"
+  },
+
+  "error": {
+    "backupFailed": "Не вдалося створити резервну копію",
+    "selectABakFile": "Оберіть файл з розширенням .bak",
+    "restoreFailed": "Не вдалося відновити резервну копію",
+    "errorFetchingUsers": "Помилка при завантаженні користувачів",
+    "youChangedRoleSuccessfully": "Роль успішно змінена!",
+    "errorChangingRole": "Помилка при зміні ролі",
+    "youEditedProfileSuccessfully": "Профіль успішно відредаговано!",
+    "errorFetchingHospitals": "Помилка при завантаженні лікарень",
+    "youLoggedInSuccessfully": "Ви успішно увійшли в систему!",
+    "errorFetchingUserID": "Помилка при завантаженні ID користувача",
+    "errorFetchingUserInfo": "Помилка при завантаженні інформації про користувача",
+    "errorFetchingHospitalInfo": "Помилка при завантаженні інформації про лікарню",
+    "errorFetchingDiseaseInfo": "Помилка при завантаженні інформації про хворобу",
+    "yourAccountDeletedSuccessfully": "Ваш акаунт успішно видалено!",
+    "errorDeletingUser": "Помилка при видаленні користувача",
+    "youRegisteredSuccessfully": "Ви успішно зареєструвалися!",
+    "youLoggedOutSuccessfully": "Ви успішно вийшли з акаунту!"
+  }
+
+}

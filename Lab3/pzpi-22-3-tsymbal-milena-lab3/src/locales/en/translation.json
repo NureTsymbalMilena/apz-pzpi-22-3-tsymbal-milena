@@ -1,0 +1,117 @@
+{
+  "profile": {
+    "title": "Profile",
+    "name": "Name",
+    "email": "Email",
+    "registrationDate": "Registration date",
+    "role": "Role",
+    "hospitalName": "Hospital name",
+    "disease": "Disease",
+    "isContagious": "Is contagious",
+    "no": "No",
+    "none": "None",
+    "edit": "Edit profile",
+    "delete": "Delete account"
+  },
+
+  "analysis": {
+    "title": "Epidemiological risk analysis",
+    "name": "Name",
+    "surname": "Surname",
+    "disease": "Disease",
+    "isContagious": "Is contagious",
+    "totalRisk": "Total risk",
+    "riskLevel": "Risk level",
+    "averageContactDuration": "Average contact duration",
+    "potentialDiseases": "Potential diseases",
+    "contacts": "Contacts (amount)",
+    "roomName": "Room name",
+    "minimalDistance": "Minimal distance",
+    "contactStartTime": "Contact start time",
+    "contactEndTime": "Contact end time",
+    "hours": "h",
+    "minutes": "m",
+    "seconds": "s"
+  },
+
+  "backup": {
+    "backupTitle": "Backup",
+    "backupDirectory": "Backup directory",
+    "backupPlaceholder": "e.g., C:\\Backups",
+    "restoreTitle": "Restore",
+    "selectBakFile": "Select .bak file",
+    "restorePlaceholder": "e.g., C:\\Backups\\backup.bak"
+  },
+
+  "changeRole": {
+    "title": "Change user role",
+    "email": "Email",
+    "role": "Role",
+    "selectAnEmail": "-- Select an email --",
+    "selectARole": "-- Select a role --",
+    "button": "Change role"
+  },
+
+  "login": {
+    "title": "Login",
+    "email": "Email",
+    "emailPlaceholder": "Enter email",
+    "password": "Password",
+    "passwordPlaceholder": "Enter password",
+    "dontHaveAnAccount": "Don't have an account?",
+    "register": "Register"
+  },
+
+  "register": {
+    "title": "Register",
+    "name": "Name",
+    "namePlaceholder": "Enter name",
+    "surname": "Surname",
+    "surnamePlaceholder": "Enter surname",
+    "email": "Email",
+    "emailPlaceholder": "Enter email",
+    "password": "Password",
+    "passwordPlaceholder": "Enter password",
+    "hospitalName": "Hospital name",
+    "hospitalPlaceholder": "-- Select a hospital --"
+  },
+
+  "editProfile": {
+    "title": "Edit profile info",
+    "name": "Name",
+    "namePlaceholder": "Enter name",
+    "surname": "Surname",
+    "surnamePlaceholder": "Enter surname",
+    "email": "Email",
+    "emailPlaceholder": "Enter email",
+    "button": "Edit"
+  },
+
+  "header": {
+    "changeRole": "Change role",
+    "backup": "Backup",
+    "profile": "Profile",
+    "logout": "Logout",
+    "login": "Login"
+  },
+
+  "error": {
+    "backupFailed": "Backup failed",
+    "selectABakFile": "Select a .bak file",
+    "restoreFailed": "Restore failed",
+    "errorFetchingUsers": "Error fetching users",
+    "youChangedRoleSuccessfully": "You changed role successfully!",
+    "errorChangingRole": "Error changing role",
+    "youEditedProfileSuccessfully": "You edited profile successfully!",
+    "errorFetchingHospitals": "Error fetching hospitals",
+    "youLoggedInSuccessfully": "You logged in successfully!",
+    "errorFetchingUserID": "Error fetching user ID",
+    "errorFetchingUserInfo": "Error fetching user info",
+    "errorFetchingHospitalInfo": "Error fetching hospital info",
+    "errorFetchingDiseaseInfo": "Error fetching disease info",
+    "yourAccountDeletedSuccessfully": "Your account deleted successfully!",
+    "errorDeletingUser": "Error deleting user",
+    "youRegisteredSuccessfully": "You registered successfully!",
+    "youLoggedOutSuccessfully": "You logged out successfully!"
+  }
+}

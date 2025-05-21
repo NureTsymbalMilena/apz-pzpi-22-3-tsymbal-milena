@@ -1,0 +1,46 @@
+.homeWrapper {
+  min-height: 100vh;
+  width: 192vh;
+  margin-top: 90px;
+  text-align: center;
+  align-items: center;
+  padding: 0 200px;
+}
+
+.homeContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.homeInfoItem {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.homeText{
+    font-weight: 700;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  text-align: left;
+  padding: 8px;
+  width: auto;
+  text-align: center;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+table tr td,
+table tr th {
+  width: calc(100% / 7); 
+}
