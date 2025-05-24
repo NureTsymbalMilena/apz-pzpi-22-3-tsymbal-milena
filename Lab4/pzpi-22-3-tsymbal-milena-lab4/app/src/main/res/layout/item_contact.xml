@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="20dp">
+
+    <TextView
+        android:id="@+id/contactName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/name"
+        android:textSize="17sp"/>
+
+    <TextView
+        android:id="@+id/contactDisease"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/disease"
+        android:textSize="17sp"/>
+
+    <TextView
+        android:id="@+id/contactRoom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/room_name"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/contactDistance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/minimal_distance"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/contactStartTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/contact_start_time"
+        android:textSize="17sp"/>
+
+    <TextView
+        android:id="@+id/contactEndTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/contact_end_time"
+        android:textSize="17sp" />
+
+</LinearLayout>
