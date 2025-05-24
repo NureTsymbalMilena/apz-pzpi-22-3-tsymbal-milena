@@ -1,0 +1,751 @@
+Харківський національний університет радіоелектроніки
+Факультет комп'ютерних наук
+Кафедра програмної інженерії
+
+
+
+
+
+ЗВІТ
+до лабораторної роботи №4 з дисципліни
+«Архітектура програмного забезпечення»
+на тему: «РОЗРОБКА МОБІЛЬНОГО КЛІЄНТА СИСТЕМИ»
+
+
+
+
+
+Виконала
+ст. гр. ПЗПІ-22-3
+Цимбал Мілена Русланівна
+
+Перевірив
+ст. викладач кафедри ПІ
+Сокорчук Ігор Петрович
+
+
+
+
+
+Харків 2025
+1 ІСТОРІЯ ЗМІН
+
+№	Дата	Версія звіту	Опис змін та виправлень
+1	02.05.2025	0.1	Створено титульний лист, а також усі ключові розділи звіту
+2	03.05.2025	0.1	Додано додатки А, Б, В
+
+2 ХІД РОБОТИ
+
+Мета лабораторного заняття є розробка мобільної частини програмної системи, що забезпечує інтерактивну взаємодію користувача з основним сервером та реалізує ключові функції додатку.
+
+3 ОПИС ВИКОНАНОЇ РОБОТИ
+
+Під час виконання цієї лабораторної роботи було розроблено мобільний клієнт для системи з використанням мови Kotlin у середовищі Android Studio. Було реалізовано активності, які забезпечують основний функціонал, зокрема операції з користувачами, лікарнями, кімнатами, зонами, контактами та переміщеннями.
+Особливу увагу приділено функціям адміністрування — створено панель для платформного адміністратора, що дозволяє змінювати ролі користувачів системи. Також розроблено інтерфейс для адміністратора баз даних, який має змогу контролювати стан системи та виконувати операції створення і відновлення резервних копій бази даних.
+Крім того, реалізовано інтерфейс для роботи з бізнес-логікою, що дозволяє отримувати аналіз епідеміологічного стану користувачів. Особливу увагу було приділено локалізації та інтернаціоналізації, включно з конвертацією одиниць вимірювання та зміною формату часу.
+До роботи додано відеозвіт, посилання на нього наведено у додатку А, графічні матеріали — у додатку Б, а вихідний код застосунку — у додатку В.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ВИСНОВКИ
+
+В результаті виконання цієї лабораторної роботи створено мобільний клієнт системи з інтуїтивним інтерфейсом для базових операцій, бізнес-логіки та адміністративних функцій. Особлива увага була приділена забезпеченню локалізації та інтернаціоналізації додатку.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ДОДАТОК А
+Відеозапис
+
+Відеозапис презентації результатів лабораторної роботи: https://youtu.be/tdnnrGHbrPM
+
+Хронологічний опис відеозапису:
+00:00 – Вітання. Доповідач вітає присутніх, ознайомлює з метою лабораторної роботи та коротко описує основні компоненти й функціональність розробленої системи.
+00:40 – Загальний функціонал. Детально розглядаються ключові можливості програмної системи, включаючи управління користувачами, внесення змін до даних, а також виконання базових операцій, що забезпечують роботу платформи.
+03:36 – Функції адміністратора платформи. Демонструються функції, доступні адміністраторам, а саме управління ролями користувачів.
+04:55 – Функції адміністратора баз даних. Описується функціонал для роботи з базами даних, а саме створення резервних копій та їхнє подальше відновлення.
+05:53 – Функції бізнес логіки. Пояснюється реалізація основних алгоритмів системи, таких як аналіз контактів та створення аналізу епідеміологічних ризиків.
+07:37 – Локалізація та інтерналізація. Показано, як система адаптується до різних мовних та регіональних налаштувань, включаючи переклад інтерфейсу, формат дати й часу, а також одиниці вимірювання.
+08:56 – Висновки. Підсумовується реалізована робота, аналізується досягнутий функціонал.
+
+
+
+ДОДАТОК Б
+Графічні матеріали
+
+ 
+Рисунок Б.1 – ER діаграма
+
+ 
+Рисунок Б.2 – Діаграма структури бази даних
+
+ 
+Рисунок Б.3 – UML-діаграма прецедентів реєстрації та авторизації
+
+ 
+Рисунок Б.4 – UML-діаграма прецедентів дій над контактами, переміщеннями та повідомленнями
+
+ 
+Рисунок Б.5 – UML-діаграма прецедентів дій над лікарнями, зонами, кімнатами, девайсами
+
+
+
+
+
+
+
+
+
+ДОДАТОК В
+Програмний код
+
+В.1 Математична обробка прикладних даних.
+GitHub репозиторій: https://github.com/NureTsymbalMilena/apz-pzpi-22-3-tsymbal-milena/blob/main/Lab4/pzpi-22-3-tsymbal-milena-lab4/app/src/main/java/com/example/lab4/ui/home/HomeFragment.kt
+
+   1: package com.example.lab4.ui.home
+   2:
+   3: import android.content.Context
+   4: import android.content.Context.MODE_PRIVATE
+   5: import android.graphics.Typeface
+   6: import android.os.Bundle
+   7: import android.text.SpannableString
+   8: import android.text.Spanned
+   9: import android.text.style.StyleSpan
+  10: import android.util.Log
+  11: import android.view.LayoutInflater
+  12: import android.view.View
+  13: import android.view.ViewGroup
+  14: import android.widget.TextView
+  15: import android.widget.Toast
+  16: import androidx.fragment.app.Fragment
+  17: import androidx.lifecycle.ViewModelProvider
+  18: import com.example.lab4.R
+  19: import com.example.lab4.api.RetrofitClient
+  20: import com.example.lab4.databinding.FragmentHomeBinding
+  21: import com.example.lab4.dto.contact.AnalysisResponse
+  22: import com.example.lab4.dto.hospital.HospitalResponse
+  23: import es.dmoral.toasty.Toasty
+  24: import retrofit2.Call
+  25: import retrofit2.Callback
+  26: import retrofit2.Response
+  27: import java.text.SimpleDateFormat
+  28: import java.util.Locale
+  29: import java.util.TimeZone
+  30:
+  31: class HomeFragment : Fragment() {
+  32:
+  33:     private var _binding: FragmentHomeBinding? = null
+  34:     private val binding get() = _binding!!
+  35:     private var analysisResponse: AnalysisResponse? = null
+  36:
+  37:     override fun onCreateView(
+  38:         inflater: LayoutInflater,
+  39:         container: ViewGroup?,
+  40:         savedInstanceState: Bundle?
+  41:     ): View {
+  42:         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+  43:         fetchAnalysis()
+  44:
+  45:         return binding.root
+  46:     }
+  47:
+  48:     override fun onDestroyView() {
+  49:         super.onDestroyView()
+  50:         _binding = null
+  51:     }
+  52:
+  53:     private fun fetchAnalysis() {
+  54:         val contactApi = RetrofitClient.getInstance().contactApi
+  55:         val sharedPref = requireContext().getSharedPreferences("auth_prefs", Context.MODE_PRIVATE)
+  56:         val userId = sharedPref.getString("userId", null)
+  57:
+  58:         if (userId == null) {
+  59:             Toasty.error(requireContext(), getString(R.string.user_id_is_missing), Toast.LENGTH_SHORT, true).show()
+  60:             return
+  61:         }
+  62:
+  63:         contactApi.epidemiologicalRiskAnalysis(userId).enqueue(object : Callback<AnalysisResponse> {
+  64:             override fun onResponse(call: Call<AnalysisResponse>, response: Response<AnalysisResponse>) {
+  65:                 if (response.isSuccessful) {
+  66:                     analysisResponse = response.body()
+  67:                     Log.d("Analysis", "Received analysis: $analysisResponse")
+  68:                     setUpFragment()
+  69:                 } else {
+  70:                     Toasty.error(requireContext(),
+  71:                         getString(R.string.restore_failed), Toast.LENGTH_SHORT, true).show()
+  72:                     Log.e("Analysis", "Response failed: ${response}")
+  73:                 }
+  74:             }
+  75:
+  76:             override fun onFailure(call: Call<AnalysisResponse>, t: Throwable) {
+  77:                 Toasty.error(requireContext(),
+  78:                     getString(R.string.restore_failed), Toast.LENGTH_SHORT, true).show()
+  79:                 Log.e("Analysis", "Failed: ${t.message}")
+  80:             }
+  81:         })
+  82:     }
+  83:
+  84:     private fun getSpannable(label: String, value: String): SpannableString {
+  85:         val fullText = "$label $value"
+  86:         val spannable = SpannableString(fullText)
+  87:         spannable.setSpan(
+  88:             StyleSpan(Typeface.BOLD),
+  89:             0,
+  90:             label.length,
+  91:             Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+  92:         )
+  93:         return spannable
+  94:     }
+  95:
+  96:
+  97:     private fun setUpFragment() {
+  98:         analysisResponse?.let { analysis ->
+  99:             val nameLabel = getString(R.string.name)
+ 100:             val fullNameText = "$nameLabel ${analysis.name} ${analysis.surname}"
+ 101:             val spannableName = SpannableString(fullNameText)
+ 102:             spannableName.setSpan(
+ 103:                 StyleSpan(Typeface.BOLD),
+ 104:                 0,
+ 105:                 nameLabel.length,
+ 106:                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+ 107:             )
+ 108:             binding.homeName.text = spannableName
+ 109:
+ 110:             val diseaseLabel = getString(R.string.disease)
+ 111:             val fullDiseaseText = "$diseaseLabel ${analysis.disease}"
+ 112:             val spannableDisease = SpannableString(fullDiseaseText)
+ 113:             spannableDisease.setSpan(
+ 114:                 StyleSpan(Typeface.BOLD),
+ 115:                 0,
+ 116:                 diseaseLabel.length,
+ 117:                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+ 118:             )
+ 119:             binding.homeDisease.text = spannableDisease
+ 120:
+ 121:             val contagiousLabel = getString(R.string.is_contagious)
+ 122:             val contagiousText = "$contagiousLabel ${if (analysis.isContagious) getString(R.string.yes) else getString(R.string.no)}"
+ 123:             val spannableContagious = SpannableString(contagiousText)
+ 124:             spannableContagious.setSpan(
+ 125:                 StyleSpan(Typeface.BOLD),
+ 126:                 0,
+ 127:                 contagiousLabel.length,
+ 128:                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+ 129:             )
+ 130:             binding.homeIsContagious.text = spannableContagious
+ 131:
+ 132:             val totalRiskLabel = getString(R.string.total_risk)
+ 133:             val totalRiskText = "$totalRiskLabel ${analysis.totalRisk}"
+ 134:             val spannableTotalRisk = SpannableString(totalRiskText)
+ 135:             spannableTotalRisk.setSpan(
+ 136:                 StyleSpan(Typeface.BOLD),
+ 137:                 0,
+ 138:                 totalRiskLabel.length,
+ 139:                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+ 140:             )
+ 141:             binding.homeTotalRisk.text = spannableTotalRisk
+ 142:
+ 143:             val riskLevelLabel = getString(R.string.risk_level)
+ 144:             val riskLevelText = "$riskLevelLabel ${analysis.riskLevel}"
+ 145:             val spannableRiskLevel = SpannableString(riskLevelText)
+ 146:             spannableRiskLevel.setSpan(
+ 147:                 StyleSpan(Typeface.BOLD),
+ 148:                 0,
+ 149:                 riskLevelLabel.length,
+ 150:                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+ 151:             )
+ 152:             binding.homeRiskLevel.text = spannableRiskLevel
+ 153:
+ 154:             val rawDuration = analysis.averageContactDuration
+ 155:             val formattedDuration = formatTimeStringToLocalizedDuration(rawDuration, requireContext())
+ 156:             binding.homeAverageContactDuration.text = getSpannable(
+ 157:                 getString(R.string.average_contact_duration),
+ 158:                 formattedDuration
+ 159:             )
+ 160:
+ 161:             val potentialDiseasesLabel = getString(R.string.potential_diseases)
+ 162:             val potentialDiseasesText = if (analysis.potentialDiseases.isNotEmpty())
+ 163:                 analysis.potentialDiseases.joinToString(", ")
+ 164:             else
+ 165:                 getString(R.string.none)
+ 166:             val fullPotentialDiseasesText = "$potentialDiseasesLabel $potentialDiseasesText"
+ 167:             val spannablePotentialDiseases = SpannableString(fullPotentialDiseasesText)
+ 168:             spannablePotentialDiseases.setSpan(
+ 169:                 StyleSpan(Typeface.BOLD),
+ 170:                 0,
+ 171:                 potentialDiseasesLabel.length,
+ 172:                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+ 173:             )
+ 174:             binding.homePotentialDiseases.text = spannablePotentialDiseases
+ 175:
+ 176:             val contactsLabel = getString(R.string.contacts_amount)
+ 177:             val contactsText = "$contactsLabel ${analysis.contacts.size}"
+ 178:             val spannableContacts = SpannableString(contactsText)
+ 179:             spannableContacts.setSpan(
+ 180:                 StyleSpan(Typeface.BOLD),
+ 181:                 0,
+ 182:                 contactsLabel.length,
+ 183:                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+ 184:             )
+ 185:             binding.homeContacts.text = spannableContacts
+ 186:
+ 187:             val contactContainer = binding.contactContainer
+ 188:             contactContainer.removeAllViews()
+ 189:
+ 190:             val inflater = LayoutInflater.from(requireContext())
+ 191:
+ 192:             analysis.contacts.forEach { contact ->
+ 193:                 val contactView = inflater.inflate(R.layout.item_contact, contactContainer, false)
+ 194:
+ 195:                 contactView.findViewById<TextView>(R.id.contactName).text =
+ 196:                     getSpannable(getString(R.string.name), "${contact.userName} ${contact.userSurname}")
+ 197:
+ 198:                 contactView.findViewById<TextView>(R.id.contactDisease).text =
+ 199:                     getSpannable(getString(R.string.disease), contact.userDisease)
+ 200:
+ 201:                 contactView.findViewById<TextView>(R.id.contactRoom).text =
+ 202:                     getSpannable(getString(R.string.room_name), contact.roomName)
+ 203:
+ 204:                 contactView.findViewById<TextView>(R.id.contactDistance).text =
+ 205:                     getSpannable(getString(R.string.minimal_distance), formatDistanceBasedOnLocale(contact.minDistance, requireContext()))
+ 206:
+ 207:                 val formattedStart = formatDateTimeBasedOnLocale(contact.contactStartTime, requireContext())
+ 208:                 contactView.findViewById<TextView>(R.id.contactStartTime).text =
+ 209:                     getSpannable(getString(R.string.contact_start_time), formattedStart)
+ 210:
+ 211:                 val formattedEnd = formatDateTimeBasedOnLocale(contact.contactEndTime, requireContext())
+ 212:                 contactView.findViewById<TextView>(R.id.contactEndTime).text =
+ 213:                     getSpannable(getString(R.string.contact_end_time), formattedEnd)
+ 214:
+ 215:                 contactContainer.addView(contactView)
+ 216:             }
+ 217:         }
+ 218:     }
+ 219:
+ 220:     fun formatDateTimeBasedOnLocale(isoDateTime: String, context: Context): String {
+ 221:         return try {
+ 222:             val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+ 223:             inputFormat.timeZone = TimeZone.getTimeZone("UTC")
+ 224:
+ 225:             val date = inputFormat.parse(isoDateTime)
+ 226:
+ 227:             val locale = context.resources.configuration.locales.get(0)
+ 228:             val outputFormat = when (locale.language) {
+ 229:                 "uk" -> SimpleDateFormat("dd.MM.yyyy HH:mm", locale)
+ 230:                 "en" -> SimpleDateFormat("MM/dd/yyyy hh:mm a", locale)
+ 231:                 else -> SimpleDateFormat("yyyy-MM-dd HH:mm", locale)
+ 232:             }
+ 233:
+ 234:             outputFormat.format(date!!)
+ 235:         } catch (e: Exception) {
+ 236:             isoDateTime
+ 237:         }
+ 238:     }
+ 239:
+ 240:     fun formatTimeStringToLocalizedDuration(timeString: String, context: Context): String {
+ 241:         val parts = timeString.split(":", ".", limit = 4)
+ 242:         if (parts.size < 3) return timeString // fallback
+ 243:
+ 244:         val hours = parts[0].toIntOrNull() ?: 0
+ 245:         val minutes = parts[1].toIntOrNull() ?: 0
+ 246:         val seconds = parts[2].toIntOrNull() ?: 0
+ 247:
+ 248:         val locale = context.resources.configuration.locales[0]
+ 249:         val isUkrainian = locale.language == "uk"
+ 250:
+ 251:         val hLabel = if (isUkrainian) "год" else "h"
+ 252:         val mLabel = if (isUkrainian) "хв" else "m"
+ 253:         val sLabel = if (isUkrainian) "с" else "s"
+ 254:
+ 255:         return buildString {
+ 256:             if (hours > 0) append("$hours $hLabel ")
+ 257:             if (minutes > 0) append("$minutes $mLabel ")
+ 258:             append("$seconds $sLabel")
+ 259:         }.trim()
+ 260:     }
+ 261:
+ 262:     private fun formatDistanceBasedOnLocale(meters: Int, context: Context): String {
+ 263:         val locale = context.resources.configuration.locales.get(0)
+ 264:         return when (locale.language) {
+ 265:             "uk" -> String.format(Locale("uk"), "%d м", meters)
+ 266:             else -> {
+ 267:                 val feet = meters * 3.28084
+ 268:                 String.format(Locale.ENGLISH, "%.2f ft", feet)
+ 269:             }
+ 270:         }
+ 271:     }
+ 272:
+ 273: }
+
+В.2 Резервне копіювання користувацьких даних.
+GitHub репозиторій: https://github.com/NureTsymbalMilena/apz-pzpi-22-3-tsymbal-milena/blob/main/Lab4/pzpi-22-3-tsymbal-milena-lab4/app/src/main/java/com/example/lab4/ui/backup/BackupFragment.kt
+
+   1: package com.example.lab4.ui.backup
+   2:
+   3: import android.app.Activity
+   4: import android.content.Context
+   5: import android.content.Intent
+   6: import android.net.Uri
+   7: import android.os.Bundle
+   8: import android.os.Environment
+   9: import android.provider.DocumentsContract
+  10: import android.provider.MediaStore
+  11: import android.provider.OpenableColumns
+  12: import android.util.Log
+  13: import androidx.activity.result.ActivityResultLauncher
+  14: import androidx.activity.result.contract.ActivityResultContracts
+  15: import androidx.fragment.app.Fragment
+  16: import android.view.LayoutInflater
+  17: import android.view.View
+  18: import android.view.ViewGroup
+  19: import android.widget.Toast
+  20: import androidx.core.text.HtmlCompat
+  21: import com.example.lab4.R
+  22: import com.example.lab4.api.RetrofitClient
+  23: import com.example.lab4.databinding.FragmentBackupBinding
+  24: import es.dmoral.toasty.Toasty
+  25: import okhttp3.MediaType.Companion.toMediaTypeOrNull
+  26: import okhttp3.ResponseBody
+  27: import retrofit2.Call
+  28: import retrofit2.Callback
+  29: import retrofit2.Response
+  30: import java.io.File
+  31: import java.io.IOException
+  32: import okhttp3.MultipartBody
+  33: import okhttp3.RequestBody.Companion.asRequestBody
+  34: import java.io.FileInputStream
+  35: import java.io.FileOutputStream
+  36: import java.text.SimpleDateFormat
+  37: import java.util.Date
+  38: import java.util.Locale
+  39:
+  40: class BackupFragment : Fragment() {
+  41:
+  42:     private var _binding: FragmentBackupBinding? = null
+  43:     private val binding get() = _binding!!
+  44:
+  45:     override fun onCreate(savedInstanceState: Bundle?) {
+  46:         super.onCreate(savedInstanceState)
+  47:
+  48:     }
+  49:
+  50:     override fun onCreateView(
+  51:         inflater: LayoutInflater, container: ViewGroup?,
+  52:         savedInstanceState: Bundle?
+  53:     ): View {
+  54:         _binding = FragmentBackupBinding.inflate(inflater, container, false)
+  55:
+  56:         binding.backupButton.setOnClickListener {
+  57:             if (binding.backupInput.text == null) {
+  58:                 Toasty.warning(requireContext(),
+  59:                     getString(R.string.write_backup_directory), Toast.LENGTH_SHORT, true).show()
+  60:             } else {
+  61:                 backup()
+  62:             }
+  63:         }
+  64:
+  65:         binding.restoreButton.setOnClickListener {
+  66:             if (binding.restoreInput.text == null) {
+  67:                 Toasty.warning(requireContext(),
+  68:                     getString(R.string.write_restore_file_path), Toast.LENGTH_SHORT, true).show()
+  69:             } else {
+  70:                 restore()
+  71:             }
+  72:         }
+  73:
+  74:         return binding.root
+  75:     }
+  76:
+  77:     override fun onDestroyView() {
+  78:         super.onDestroyView()
+  79:         _binding = null
+  80:     }
+  81:
+  82:     private fun backup(){
+  83:         val adminApi = RetrofitClient.getInstance().adminApi
+  84:
+  85:         val sharedPref = requireContext().getSharedPreferences("auth_prefs", Context.MODE_PRIVATE)
+  86:         val accessToken = sharedPref.getString("accessToken", null)
+  87:
+  88:         if (accessToken == null) {
+  89:             Toasty.error(requireContext(),
+  90:                 getString(R.string.access_token_not_found), Toast.LENGTH_SHORT, true).show()
+  91:             return
+  92:         }
+  93:         val bearerToken = "Bearer $accessToken"
+  94:
+  95:         adminApi.backup(bearerToken, binding.backupInput.text.toString()).enqueue(object : Callback<ResponseBody> {
+  96:             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+  97:                 if (response.isSuccessful) {
+  98:                     Toasty.success(requireContext(),
+  99:                         getString(R.string.backup_made_successfully), Toast.LENGTH_SHORT, true).show()
+ 100:                     Log.d("Backup", getString(R.string.backup_made_successfully))
+ 101:                 } else {
+ 102:                     Toasty.error(requireContext(), "${getString(R.string.response_failed)} ${response.code()}"
+ 103:                         , Toast.LENGTH_SHORT, true).show()
+ 104:                     Log.e("Backup", "Response failed: ${response}")
+ 105:                 }
+ 106:             }
+ 107:
+ 108:             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+ 109:                 Toasty.error(requireContext(),
+ 110:                     getString(R.string.network_error, t.message), Toast.LENGTH_SHORT, true).show()
+ 111:                 Log.e("Backup", "Failed: ${t.message}")
+ 112:             }
+ 113:         })
+ 114:     }
+ 115:
+ 116:     private fun restore() {
+ 117:         val adminApi = RetrofitClient.getInstance().adminApi
+ 118:
+ 119:         val sharedPref = requireContext().getSharedPreferences("auth_prefs", Context.MODE_PRIVATE)
+ 120:         val accessToken = sharedPref.getString("accessToken", null)
+ 121:
+ 122:         if (accessToken == null) {
+ 123:             Toasty.error(requireContext(), getString(R.string.access_token_not_found), Toast.LENGTH_SHORT, true).show()
+ 124:             return
+ 125:         }
+ 126:         val bearerToken = "Bearer $accessToken"
+ 127:
+ 128:         adminApi.restore(bearerToken, binding.restoreInput.text.toString()).enqueue(object : Callback<ResponseBody> {
+ 129:             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+ 130:                 if (response.isSuccessful) {
+ 131:                     Toasty.success(requireContext(),
+ 132:                         getString(R.string.restore_successful), Toast.LENGTH_SHORT, true).show()
+ 133:                     Log.d("Restore", "Restore successful")
+ 134:                 } else {
+ 135:                     Toasty.error(requireContext(),
+ 136:                         getString(R.string.restore_failed), Toast.LENGTH_SHORT, true).show()
+ 137:                     Log.e("Restore", "Restore failed: ${response}")
+ 138:                 }
+ 139:             }
+ 140:
+ 141:             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+ 142:                 Toasty.error(requireContext(), getString(R.string.network_error, t.message), Toast.LENGTH_SHORT, true).show()
+ 143:                 Log.e("Restore", "Failed: ${t.message}")
+ 144:             }
+ 145:         })
+ 146:     }
+ 147:
+ 148: }
+
+В.3 Адміністрування бізнес-логіки системи. Адміністратор платформи.
+GitHub репозиторій: https://github.com/NureTsymbalMilena/apz-pzpi-22-3-tsymbal-milena/blob/main/Lab4/pzpi-22-3-tsymbal-milena-lab4/app/src/main/java/com/example/lab4/ui/changeRole/ChangeRoleFragment.kt
+
+	   1: package com.example.lab4.ui.changeRole
+   2:
+   3: import android.content.Context
+   4: import android.os.Bundle
+   5: import android.util.Log
+   6: import android.view.LayoutInflater
+   7: import android.view.View
+   8: import android.view.ViewGroup
+   9: import android.widget.Toast
+  10: import androidx.fragment.app.Fragment
+  11: import com.example.lab4.R
+  12: import com.example.lab4.api.RetrofitClient
+  13: import com.example.lab4.databinding.FragmentChangeRoleBinding
+  14: import com.example.lab4.dto.admin.ChangeRoleDto
+  15: import com.example.lab4.dto.contact.AnalysisResponse
+  16: import com.example.lab4.dto.hospital.HospitalResponse
+  17: import com.example.lab4.dto.user.UserResponse
+  18: import es.dmoral.toasty.Toasty
+  19: import okhttp3.ResponseBody
+  20: import retrofit2.Call
+  21: import retrofit2.Callback
+  22: import retrofit2.Response
+  23:
+  24: class ChangeRoleFragment : Fragment() {
+  25:
+  26:     private var _binding: FragmentChangeRoleBinding? = null
+  27:     private val binding get() = _binding!!
+  28:
+  29:     private var usersResponse: List<UserResponse>? = null
+  30:     private val roles = listOf(
+  31:         "User",
+  32:         "PlatformAdmin",
+  33:         "SystemAdmin",
+  34:         "DatabaseAdmin",
+  35:         "HospitalAdmin"
+  36:     )
+  37:
+  38:     override fun onCreateView(
+  39:         inflater: LayoutInflater,
+  40:         container: ViewGroup?,
+  41:         savedInstanceState: Bundle?
+  42:     ): View {
+  43:         _binding = FragmentChangeRoleBinding.inflate(inflater, container, false)
+  44:
+  45:         binding.changeButton.setOnClickListener {
+  46:             changeRole()
+  47:         }
+  48:
+  49:         return binding.root
+  50:     }
+  51:
+  52:     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+  53:         super.onViewCreated(view, savedInstanceState)
+  54:         fetchUsers()
+  55:         setupRoleSpinner()
+  56:     }
+  57:
+  58:     override fun onDestroyView() {
+  59:         super.onDestroyView()
+  60:         _binding = null
+  61:     }
+  62:
+  63:     private fun <T> prepareSpinnerList(
+  64:         items: List<T>,
+  65:         placeholder: String,
+  66:         displayFunc: (T) -> String
+  67:     ): List<String> {
+  68:         val list = mutableListOf<String>()
+  69:         list.add(placeholder)
+  70:         list.addAll(items.map { displayFunc(it) })
+  71:         return list
+  72:     }
+  73:
+  74:     private fun fetchUsers() {
+  75:         val userApi = RetrofitClient.getInstance().userApi
+  76:
+  77:         userApi.getAllUsers().enqueue(object : Callback<List<UserResponse>> {
+  78:             override fun onResponse(call: Call<List<UserResponse>>, response: Response<List<UserResponse>>) {
+  79:                 if (response.isSuccessful) {
+  80:                     usersResponse = response.body()
+  81:
+  82:                     val userNames = prepareSpinnerList(usersResponse ?: emptyList(),
+  83:                         getString(R.string.select_user_email)) { user ->
+  84:                         "${user.email}"
+  85:                     }
+  86:
+  87:                     val adapter = android.widget.ArrayAdapter(
+  88:                         requireContext(),
+  89:                         android.R.layout.simple_spinner_item,
+  90:                         userNames
+  91:                     )
+  92:                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+  93:                     binding.changeEmailSpinner.adapter = adapter
+  94:
+  95:                     Log.e("ChangeRole", "Users fetched successfully: ${response}")
+  96:                 } else {
+  97:                     Toasty.error(requireContext(), "${getString(R.string.response_failed)} ${response.code()}"
+  98:                         , Toast.LENGTH_SHORT, true).show()
+  99:                     Log.e("ChangeRole", "Response failed: ${response}")
+ 100:                 }
+ 101:             }
+ 102:
+ 103:             override fun onFailure(call: Call<List<UserResponse>>, t: Throwable) {
+ 104:                 Toasty.error(requireContext(), "${getString(R.string.response_failed)}"
+ 105:                     , Toast.LENGTH_SHORT, true).show()
+ 106:                 Log.e("ChangeRole", "Failed: ${t.message}")
+ 107:             }
+ 108:         })
+ 109:     }
+ 110:
+ 111:     private fun setupRoleSpinner() {
+ 112:         val rolesWithPlaceholder = mutableListOf(getString(R.string.select_role))
+ 113:         rolesWithPlaceholder.addAll(roles)
+ 114:
+ 115:         val adapter = android.widget.ArrayAdapter(
+ 116:             requireContext(),
+ 117:             android.R.layout.simple_spinner_item,
+ 118:             rolesWithPlaceholder
+ 119:         )
+ 120:         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+ 121:         binding.changeRoleSpinner.adapter = adapter
+ 122:     }
+ 123:
+ 124:     private fun changeRole(){
+ 125:         val adminApi = RetrofitClient.getInstance().adminApi
+ 126:
+ 127:         val sharedPref = requireContext().getSharedPreferences("auth_prefs", Context.MODE_PRIVATE)
+ 128:         val accessToken = sharedPref.getString("accessToken", null)
+ 129:
+ 130:         if (accessToken == null) {
+ 131:             Toasty.error(requireContext(), getString(R.string.access_token_not_found), Toast.LENGTH_SHORT, true).show()
+ 132:             return
+ 133:         }
+ 134:         val bearerToken = "Bearer $accessToken"
+ 135:         val email = binding.changeEmailSpinner.selectedItem?.toString()
+ 136:         val role = binding.changeRoleSpinner.selectedItem?.toString()
+ 137:
+ 138:         if (email.isNullOrBlank() || role.isNullOrBlank()
+ 139:             || email == getString(R.string.select_user_email)
+ 140:             || role == getString(R.string.select_role)
+ 141:         ) {
+ 142:             Toasty.warning(requireContext(),
+ 143:                 getString(R.string.please_select_both_email_and_role), Toast.LENGTH_SHORT, true).show()
+ 144:             return
+ 145:         }
+ 146:
+ 147:         val changeRoleDto = ChangeRoleDto(
+ 148:             userEmail = email,
+ 149:             role = role
+ 150:         )
+ 151:         Log.d("ChangeRole", "${email} ${role} ${bearerToken}")
+ 152:         adminApi.changeRole(bearerToken, changeRoleDto).enqueue(object : Callback<ResponseBody> {
+ 153:             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+ 154:                 if (response.isSuccessful) {
+ 155:                     Toasty.success(requireContext(),
+ 156:                         getString(R.string.role_changed_successfully), Toast.LENGTH_SHORT, true).show()
+ 157:                     Log.d("ChangeRole", "Role changed successfully")
+ 158:                 } else {
+ 159:                     Toasty.error(requireContext(), "${getString(R.string.response_failed)} ${response.code()}"
+ 160:                         , Toast.LENGTH_SHORT, true).show()
+ 161:                     Log.e("ChangeRole", "Response failed: ${response}")
+ 162:                 }
+ 163:             }
+ 164:
+ 165:             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+ 166:                 Toasty.error(requireContext(), "${getString(R.string.response_failed)}"
+ 167:                     , Toast.LENGTH_SHORT, true).show()
+ 168:                 Log.e("ChangeRole", "Failed: ${t.message}")
+ 169:             }
+ 170:         })
+ 171:     }
+ 172: }
+
