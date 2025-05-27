@@ -157,7 +157,7 @@
 ДОДАТОК В 
 Програмний код
 
-	В.1 Математична обробка прикладних даних. 
+	В.1 Математична обробка прикладних даних
 
 	GitHub репозиторій: https://github.com/NureTsymbalMilena/apz-pzpi-22-3-tsymbal-milena/blob/main/Lab2/pzpi-22-3-tsymbal-milena-lab2/InRoom.BLL/Services/ContactService.cs
 
