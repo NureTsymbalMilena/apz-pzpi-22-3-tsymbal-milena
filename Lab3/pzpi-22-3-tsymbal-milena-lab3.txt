@@ -105,10 +105,9 @@
 Графічні матеріали
 
  
-Рисунок Б.1 – ER діаграма
-
+Рисунок Б.1 — ER-діаграма даних
  
-Рисунок Б.2 – Діаграма структури бази даних
+Рисунок Б.2 — Структура бази даних
 
  
 Рисунок Б.3 – UML-діаграма прецедентів реєстрації та авторизації
@@ -288,7 +287,113 @@ GitHub репозиторій: https://github.com/NureTsymbalMilena/apz-pzpi-22-
  153:
  154: export default Home
 
-В.2 Резервне копіювання користувацьких даних.
+В.2 Адміністрування бізнес-логіки системи. Адміністратор платформи.
+GitHub репозиторій: https://github.com/NureTsymbalMilena/apz-pzpi-22-3-tsymbal-milena/blob/main/Lab3/pzpi-22-3-tsymbal-milena-lab3/src/pages/ChangeRole/ChangeRole.jsx
+
+1: import './ChangeRole.css'
+   2: import React, { useState, useEffect } from 'react';
+   3: import toast from "react-hot-toast";
+   4: import axios from 'axios';
+   5: import '../../i18n';
+   6: import { useTranslation } from 'react-i18next';
+   7:
+   8: function ChangeRole() {
+   9:     const { t } = useTranslation();
+  10:     const [formData, setFormData] = useState({
+  11:         UserEmail: '',
+  12:         Role: '',
+  13:     });
+  14:     const [users, setUsers] = useState([]);
+  15:     const roles = ['User', 'PlatformAdmin', 'SystemAdmin', 'DatabaseAdmin', 'HospitalAdmin'];
+  16:
+  17:     useEffect(() => {
+  18:         const fetchUsers = async () => {
+  19:             try {
+  20:                 const response = await axios.get('http://localhost:5119/api/User');
+  21:                 setUsers(response.data);
+  22:             } catch (error) {
+  23:                 toast.error(t('error.errorFetchingUsers'));
+  24:                 console.error(error);
+  25:             }
+  26:         };
+  27:
+  28:         fetchUsers();
+  29:     }, []);
+  30:
+  31:     const handleChange = (e) => {
+  32:         const { name, value } = e.target;
+  33:         setFormData(prev => ({ ...prev, [name]: value }));
+  34:     };
+  35:
+  36:     const handleSubmit = async (e) => {
+  37:         e.preventDefault();
+  38:
+  39:         try {
+  40:              await axios.patch(
+  41:                 'http://localhost:5119/api/Admin/role',formData,
+  42:                 {
+  43:                     withCredentials: true,
+  44:                     headers: {
+  45:                         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+  46:                         'Content-Type': 'application/json'
+  47:                     }
+  48:                 }
+  49:             );
+  50:
+  51:             toast.success(t('error.youChangedRoleSuccessfully'));
+  52:         } catch (error) {
+  53:             toast.error(error.response?.data?.message || t('error.errorChangingRole'));
+  54:             console.error(error);
+  55:         }
+  56:     };
+  57:
+  58:     return (
+  59:         <div className="wrapper">
+  60:             <div className="container">
+  61:                 <form onSubmit={handleSubmit}>
+  62:                     <h2 className="title">{t('changeRole.title')}</h2>
+  63:                     <div className='formItems'>
+  64:                         <label htmlFor="Email">{t('changeRole.email')}</label>
+  65:                         <select
+  66:                             id="UserEmail"
+  67:                             name="UserEmail"
+  68:                             value={formData.UserEmail}
+  69:                             onChange={handleChange}
+  70:                             required
+  71:                         >
+  72:                             <option value="">{t('changeRole.selectAnEmail')}</option>
+  73:                             {users.map(user => (
+  74:                                 <option key={user.userId} value={user.email}>
+  75:                                     {user.email}
+  76:                                 </option>
+  77:                             ))}
+  78:                         </select>
+  79:                         <label htmlFor="Role">{t('changeRole.role')}</label>
+  80:                         <select
+  81:                             id="Role"
+  82:                             name="Role"
+  83:                             value={formData.Role}
+  84:                             onChange={handleChange}
+  85:                             required
+  86:                         >
+  87:                             <option value="">{t('changeRole.selectARole')}</option>
+  88:                             {roles.map(role => (
+  89:                                 <option key={role} value={role}>
+  90:                                     {role}
+  91:                                 </option>
+  92:                             ))}
+  93:                         </select>
+  94:                     </div>
+  95:                     <button type="submit">{t('changeRole.button')}</button>
+  96:                 </form>
+  97:             </div>
+  98:         </div>
+  99:     )
+ 100: }
+ 101:
+ 102: export default ChangeRole
+
+В.3 Резервне копіювання користувацьких даних.
 GitHub репозиторій: https://github.com/NureTsymbalMilena/apz-pzpi-22-3-tsymbal-milena/blob/main/Lab3/pzpi-22-3-tsymbal-milena-lab3/src/pages/Backup/Backup.jsx
 
 1: import './Backup.css'
@@ -401,108 +506,5 @@ GitHub репозиторій: https://github.com/NureTsymbalMilena/apz-pzpi-22-
  108:
  109: export default Backup;
 
-	В.3 Адміністрування бізнес-логіки системи. Адміністратор платформи.
-GitHub репозиторій: https://github.com/NureTsymbalMilena/apz-pzpi-22-3-tsymbal-milena/blob/main/Lab3/pzpi-22-3-tsymbal-milena-lab3/src/pages/ChangeRole/ChangeRole.jsx
+	
 
-1: import './ChangeRole.css'
-   2: import React, { useState, useEffect } from 'react';
-   3: import toast from "react-hot-toast";
-   4: import axios from 'axios';
-   5: import '../../i18n';
-   6: import { useTranslation } from 'react-i18next';
-   7:
-   8: function ChangeRole() {
-   9:     const { t } = useTranslation();
-  10:     const [formData, setFormData] = useState({
-  11:         UserEmail: '',
-  12:         Role: '',
-  13:     });
-  14:     const [users, setUsers] = useState([]);
-  15:     const roles = ['User', 'PlatformAdmin', 'SystemAdmin', 'DatabaseAdmin', 'HospitalAdmin'];
-  16:
-  17:     useEffect(() => {
-  18:         const fetchUsers = async () => {
-  19:             try {
-  20:                 const response = await axios.get('http://localhost:5119/api/User');
-  21:                 setUsers(response.data);
-  22:             } catch (error) {
-  23:                 toast.error(t('error.errorFetchingUsers'));
-  24:                 console.error(error);
-  25:             }
-  26:         };
-  27:
-  28:         fetchUsers();
-  29:     }, []);
-  30:
-  31:     const handleChange = (e) => {
-  32:         const { name, value } = e.target;
-  33:         setFormData(prev => ({ ...prev, [name]: value }));
-  34:     };
-  35:
-  36:     const handleSubmit = async (e) => {
-  37:         e.preventDefault();
-  38:
-  39:         try {
-  40:              await axios.patch(
-  41:                 'http://localhost:5119/api/Admin/role',formData,
-  42:                 {
-  43:                     withCredentials: true,
-  44:                     headers: {
-  45:                         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
-  46:                         'Content-Type': 'application/json'
-  47:                     }
-  48:                 }
-  49:             );
-  50:
-  51:             toast.success(t('error.youChangedRoleSuccessfully'));
-  52:         } catch (error) {
-  53:             toast.error(error.response?.data?.message || t('error.errorChangingRole'));
-  54:             console.error(error);
-  55:         }
-  56:     };
-  57:
-  58:     return (
-  59:         <div className="wrapper">
-  60:             <div className="container">
-  61:                 <form onSubmit={handleSubmit}>
-  62:                     <h2 className="title">{t('changeRole.title')}</h2>
-  63:                     <div className='formItems'>
-  64:                         <label htmlFor="Email">{t('changeRole.email')}</label>
-  65:                         <select
-  66:                             id="UserEmail"
-  67:                             name="UserEmail"
-  68:                             value={formData.UserEmail}
-  69:                             onChange={handleChange}
-  70:                             required
-  71:                         >
-  72:                             <option value="">{t('changeRole.selectAnEmail')}</option>
-  73:                             {users.map(user => (
-  74:                                 <option key={user.userId} value={user.email}>
-  75:                                     {user.email}
-  76:                                 </option>
-  77:                             ))}
-  78:                         </select>
-  79:                         <label htmlFor="Role">{t('changeRole.role')}</label>
-  80:                         <select
-  81:                             id="Role"
-  82:                             name="Role"
-  83:                             value={formData.Role}
-  84:                             onChange={handleChange}
-  85:                             required
-  86:                         >
-  87:                             <option value="">{t('changeRole.selectARole')}</option>
-  88:                             {roles.map(role => (
-  89:                                 <option key={role} value={role}>
-  90:                                     {role}
-  91:                                 </option>
-  92:                             ))}
-  93:                         </select>
-  94:                     </div>
-  95:                     <button type="submit">{t('changeRole.button')}</button>
-  96:                 </form>
-  97:             </div>
-  98:         </div>
-  99:     )
- 100: }
- 101:
- 102: export default ChangeRole

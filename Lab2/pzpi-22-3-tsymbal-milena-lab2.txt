@@ -25,6 +25,8 @@
 
 
 
+
+
 Харків 2025
 ІСТОРІЯ ЗМІН
 
@@ -131,10 +133,9 @@
 Графічні матеріали
 
  
-Рисунок Б.1 – ER діаграма
-
+Рисунок Б.1 — ER-діаграма даних
  
-Рисунок Б.2 – Діаграма структури бази даних
+Рисунок Б.2 — Структура бази даних
 
  
 Рисунок Б.3 – UML-діаграма прецедентів реєстрації та авторизації
@@ -157,6 +158,7 @@
 Програмний код
 
 	В.1 Математична обробка прикладних даних. 
+
 	GitHub репозиторій: https://github.com/NureTsymbalMilena/apz-pzpi-22-3-tsymbal-milena/blob/main/Lab2/pzpi-22-3-tsymbal-milena-lab2/InRoom.BLL/Services/ContactService.cs
 
    1: using InRoom.BLL.Contracts.User;
